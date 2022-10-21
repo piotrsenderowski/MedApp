@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedApp.Core", "src\MedApp.Core\MedApp.Core.csproj", "{0D41CAE0-58C8-412D-BB1C-AE0BEA9D0303}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedApp.Infrastructure", "src\MedApp.Infrastructure\MedApp.Infrastructure.csproj", "{3CFA6FB9-22E3-4FFB-9205-B86C6E19E2D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedApp.Api", "src\MedApp.Api\MedApp.Api.csproj", "{E398E278-0362-4A3D-ADD9-EA4BA1A4FDDD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedApp.Tests.Unit", "tests\MedApp.Tests.Unit\MedApp.Tests.Unit.csproj", "{AC56F669-3548-4BA7-B697-8F9C61473FE4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedApp.Application", "src\MedApp.Application\MedApp.Application.csproj", "{66D21A45-EFDA-4D35-84A3-27B0FBD2AB1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedApp.Tests.Integration", "tests\MedApp.Tests.Integration\MedApp.Tests.Integration.csproj", "{41418278-16C2-4307-AD1B-8520C748A64C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D41CAE0-58C8-412D-BB1C-AE0BEA9D0303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D41CAE0-58C8-412D-BB1C-AE0BEA9D0303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D41CAE0-58C8-412D-BB1C-AE0BEA9D0303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D41CAE0-58C8-412D-BB1C-AE0BEA9D0303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CFA6FB9-22E3-4FFB-9205-B86C6E19E2D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CFA6FB9-22E3-4FFB-9205-B86C6E19E2D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CFA6FB9-22E3-4FFB-9205-B86C6E19E2D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CFA6FB9-22E3-4FFB-9205-B86C6E19E2D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E398E278-0362-4A3D-ADD9-EA4BA1A4FDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E398E278-0362-4A3D-ADD9-EA4BA1A4FDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E398E278-0362-4A3D-ADD9-EA4BA1A4FDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E398E278-0362-4A3D-ADD9-EA4BA1A4FDDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC56F669-3548-4BA7-B697-8F9C61473FE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC56F669-3548-4BA7-B697-8F9C61473FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC56F669-3548-4BA7-B697-8F9C61473FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC56F669-3548-4BA7-B697-8F9C61473FE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D21A45-EFDA-4D35-84A3-27B0FBD2AB1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D21A45-EFDA-4D35-84A3-27B0FBD2AB1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D21A45-EFDA-4D35-84A3-27B0FBD2AB1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D21A45-EFDA-4D35-84A3-27B0FBD2AB1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41418278-16C2-4307-AD1B-8520C748A64C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41418278-16C2-4307-AD1B-8520C748A64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41418278-16C2-4307-AD1B-8520C748A64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41418278-16C2-4307-AD1B-8520C748A64C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBF76576-7B0E-49E4-8BDB-62EF8ADF1704}
+	EndGlobalSection
+EndGlobal
