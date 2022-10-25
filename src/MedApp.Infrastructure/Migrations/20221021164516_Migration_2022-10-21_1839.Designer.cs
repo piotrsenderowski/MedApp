@@ -4,6 +4,7 @@ using MedApp.Infrastructure.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedApp.Infrastructure.Migrations
 {
     [DbContext(typeof(MedAppDbContext))]
-    partial class MedAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221021164516_Migration_2022-10-21_1839")]
+    partial class Migration_20221021_1839
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,18 +157,15 @@ namespace MedApp.Infrastructure.Migrations
                 {
                     b.HasOne("MedApp.Core.Entities.ConsultationRoom", null)
                         .WithMany()
-                        .HasForeignKey("ConsultationRoomId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ConsultationRoomId");
 
                     b.HasOne("MedApp.Core.Entities.User", null)
                         .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DoctorId");
 
                     b.HasOne("MedApp.Core.Entities.Patient", null)
                         .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PatientId");
                 });
 #pragma warning restore 612, 618
         }

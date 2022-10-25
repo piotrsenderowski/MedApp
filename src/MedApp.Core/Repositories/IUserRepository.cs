@@ -13,5 +13,6 @@ namespace MedApp.Core.Repositories
         Task<User> GetByEmailAsync(Email email);
         Task<User> GetByUserNameAsync(string userName);
         Task AddAsync(User user);
+        Task DeleteAsync(User user);
     }
 }

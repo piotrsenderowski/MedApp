@@ -4,6 +4,7 @@ using MedApp.Infrastructure.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedApp.Infrastructure.Migrations
 {
     [DbContext(typeof(MedAppDbContext))]
-    partial class MedAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221021163607_Migration_2022-10-21_1833")]
+    partial class Migration_20221021_1833
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,6 +124,9 @@ namespace MedApp.Infrastructure.Migrations
                     b.Property<Guid?>("ConsultationRoomId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ConsultationRoomId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("DateFrom")
                         .HasColumnType("datetime2");
 
@@ -134,7 +139,13 @@ namespace MedApp.Infrastructure.Migrations
                     b.Property<Guid?>("DoctorId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("DoctorId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("PatientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("PatientId1")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ProcedureName")
@@ -144,9 +155,15 @@ namespace MedApp.Infrastructure.Migrations
 
                     b.HasIndex("ConsultationRoomId");
 
+                    b.HasIndex("ConsultationRoomId1");
+
                     b.HasIndex("DoctorId");
 
+                    b.HasIndex("DoctorId1");
+
                     b.HasIndex("PatientId");
+
+                    b.HasIndex("PatientId1");
 
                     b.ToTable("Visits");
                 });
@@ -155,18 +172,33 @@ namespace MedApp.Infrastructure.Migrations
                 {
                     b.HasOne("MedApp.Core.Entities.ConsultationRoom", null)
                         .WithMany()
-                        .HasForeignKey("ConsultationRoomId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ConsultationRoomId");
+
+                    b.HasOne("MedApp.Core.Entities.ConsultationRoom", "ConsultationRoom")
+                        .WithMany()
+                        .HasForeignKey("ConsultationRoomId1");
 
                     b.HasOne("MedApp.Core.Entities.User", null)
                         .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DoctorId");
+
+                    b.HasOne("MedApp.Core.Entities.User", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId1");
 
                     b.HasOne("MedApp.Core.Entities.Patient", null)
                         .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PatientId");
+
+                    b.HasOne("MedApp.Core.Entities.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId1");
+
+                    b.Navigation("ConsultationRoom");
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Patient");
                 });
 #pragma warning restore 612, 618
         }

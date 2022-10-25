@@ -19,9 +19,6 @@ namespace MedApp.Core.Entities
         public Date DateTo { get; private set; }
         public ProcedureName ProcedureName { get; private set; }
         public Description Description { get; private set; }
-        public User Doctor { get; private set; }
-        public Patient Patient { get; private set; }
-        public ConsultationRoom ConsultationRoom { get; private set; }
 
         public Visit(VisitId id, UserId doctorId, 
             PatientId patientId, ConsultationRoomId consultationRoomId,

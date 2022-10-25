@@ -1,6 +1,7 @@
 @url = http://localhost:5000
 @visitId = A9732411-4670-469B-A78A-7F3CF1954C10
-@doctorId = 9B3E5650-6A5A-49A5-95BF-67A0BB56E333
+@doctorId = 9b3e5650-6a5a-49a5-95bf-67a0bb56e333
+@doctorEmail = doctor@medapp.pl
 @patientId = 00000000-0000-0000-0001-000000000001
 @consultationRoomId = 00000000-0000-0000-0000-000000000001
 @accessToken = {{sign_in.response.body.$.accessToken}}
@@ -55,6 +56,11 @@ GET {{url}}/users
 Authorization : Bearer {{accessToken}}
 
 ###
+DELETE {{url}}/users/{{doctorId}}
+Authorization : Bearer {{accessToken}}
+
+
+###
 GET {{url}}/users/me
 Authorization : Bearer {{accessToken}}
 
@@ -82,8 +88,8 @@ Content-Type: application/json
     "doctorId": "{{doctorId}}",
     "patientId": "{{patientId}}",
     "consultationRoomId": "{{consultationRoomId}}",
-    "dateFrom": "2022-10-25T14:00:00",
-    "dateTo": "2022-10-25T14:30:00",
+    "dateFrom": "2022-10-24T15:30:00",
+    "dateTo": "2022-10-24T16:30:00",
     "procedureName": "Procedure",
     "description": "Little description"
 }

@@ -32,6 +32,9 @@ namespace MedApp.Infrastructure.DAL.Repositories
             await _users.AddAsync(user);
         }
 
-            
+        public async Task DeleteAsync(User user)
+        {
+            _users.Remove(user);
+        }
     }
 }

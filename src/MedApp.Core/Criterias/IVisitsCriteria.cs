@@ -9,6 +9,6 @@ namespace MedApp.Core.Criterias
 {
     public interface IVisitsCriteria
     {
-        IEnumerable<Visit> MeetCriteria(IEnumerable<Visit> visits, object criterium);
+        Task<IEnumerable<Visit>> MeetCriteria(IEnumerable<Visit> visits, object criterium);
     }
 }

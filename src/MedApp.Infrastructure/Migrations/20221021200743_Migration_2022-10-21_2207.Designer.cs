@@ -4,6 +4,7 @@ using MedApp.Infrastructure.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedApp.Infrastructure.Migrations
 {
     [DbContext(typeof(MedAppDbContext))]
-    partial class MedAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221021200743_Migration_2022-10-21_2207")]
+    partial class Migration_20221021_2207
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -68,6 +68,13 @@ namespace MedApp.Api.Apis
 
             });
 
+            app.MapDelete("users/{userId:guid}", async (Guid userId, ICommandHandler<DeleteUser> handler) =>
+            {
+                var command = new DeleteUser(userId);
+                await handler.HandleAsync(command);
+                return Results.NoContent();
+            });
+
             return app;
 
         }
