@@ -4,6 +4,7 @@ using MedApp.Infrastructure.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedApp.Infrastructure.Migrations
 {
     [DbContext(typeof(MedAppDbContext))]
-    partial class MedAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221027091919_Migration_2022-10-17_1119")]
+    partial class Migration_20221017_1119
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,15 +156,15 @@ namespace MedApp.Infrastructure.Migrations
             modelBuilder.Entity("MedApp.Core.Entities.Visit", b =>
                 {
                     b.HasOne("MedApp.Core.Entities.ConsultationRoom", "ConsultationRoom")
-                        .WithMany()
+                        .WithMany("Visits")
                         .HasForeignKey("ConsultationRoomId");
 
                     b.HasOne("MedApp.Core.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Visits")
                         .HasForeignKey("DoctorId");
 
                     b.HasOne("MedApp.Core.Entities.Patient", "Patient")
-                        .WithMany()
+                        .WithMany("Visits")
                         .HasForeignKey("PatientId");
 
                     b.Navigation("ConsultationRoom");
@@ -170,6 +172,21 @@ namespace MedApp.Infrastructure.Migrations
                     b.Navigation("Patient");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MedApp.Core.Entities.ConsultationRoom", b =>
+                {
+                    b.Navigation("Visits");
+                });
+
+            modelBuilder.Entity("MedApp.Core.Entities.Patient", b =>
+                {
+                    b.Navigation("Visits");
+                });
+
+            modelBuilder.Entity("MedApp.Core.Entities.User", b =>
+                {
+                    b.Navigation("Visits");
                 });
 #pragma warning restore 612, 618
         }

@@ -13,14 +13,13 @@ namespace MedApp.Api.Apis
         private const string MeRoute = "me";
         public static WebApplication UsePatientsApi(this WebApplication app)
         {
-            string[] allRoles = { "is-admin" };
             app.MapGet("patients", async (IQueryHandler<GetPatients, IEnumerable<PatientDto>> handler) =>
             {
                 var query = new GetPatients();
                 var patients = await handler.HandleAsync(query);
                 return Results.Ok(patients);
 
-            }).RequireAuthorization(allRoles);
+            }).RequireAuthorization("moderator-patients");
 
             app.MapPost("patients", async (AddPatient command, ICommandHandler<AddPatient> handler) =>
             {

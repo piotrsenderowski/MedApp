@@ -1,5 +1,6 @@
 ﻿using MedApp.Core.ValueObjects;
 using System;
+using System.Collections.Generic;
 
 namespace MedApp.Core.Entities
 {

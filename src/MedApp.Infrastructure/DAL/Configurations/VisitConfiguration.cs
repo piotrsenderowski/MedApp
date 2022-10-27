@@ -14,9 +14,9 @@ namespace MedApp.Infrastructure.DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<Visit> builder)
         {
-            builder.HasOne<User>().WithMany().HasForeignKey(x => x.DoctorId).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne<Patient>().WithMany().HasForeignKey(x => x.PatientId).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne<ConsultationRoom>().WithMany().HasForeignKey(x => x.ConsultationRoomId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(e => e.User).WithMany().HasForeignKey(x => x.DoctorId);
+            builder.HasOne(e => e.Patient).WithMany().HasForeignKey(x => x.PatientId);
+            builder.HasOne(e => e.ConsultationRoom).WithMany().HasForeignKey(x => x.ConsultationRoomId);
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                 .HasConversion(x => x.Value, x => new VisitId(x));

@@ -4,6 +4,7 @@ using MedApp.Infrastructure.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedApp.Infrastructure.Migrations
 {
     [DbContext(typeof(MedAppDbContext))]
-    partial class MedAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221025184146_Migration_2022-10-25_2040")]
+    partial class Migration_20221025_2040
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,13 +142,16 @@ namespace MedApp.Infrastructure.Migrations
                     b.Property<string>("ProcedureName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ConsultationRoomId");
 
-                    b.HasIndex("DoctorId");
-
                     b.HasIndex("PatientId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Visits");
                 });
@@ -157,13 +162,13 @@ namespace MedApp.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("ConsultationRoomId");
 
-                    b.HasOne("MedApp.Core.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("DoctorId");
-
                     b.HasOne("MedApp.Core.Entities.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("PatientId");
+
+                    b.HasOne("MedApp.Core.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("ConsultationRoom");
 

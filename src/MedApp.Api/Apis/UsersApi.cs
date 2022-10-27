@@ -22,7 +22,6 @@ namespace MedApp.Api.Apis
 
             }).RequireAuthorization("is-admin");
 
-
             app.MapGet("users/me", async (HttpContext context, IQueryHandler<GetUser, UserDto> handler) =>
             {
                 var userId = context.User.Identity?.Name ?? string.Empty;

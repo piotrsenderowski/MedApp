@@ -1,8 +1,9 @@
 @url = http://localhost:5000
 @visitId = A9732411-4670-469B-A78A-7F3CF1954C10
 @doctorId = 9b3e5650-6a5a-49a5-95bf-67a0bb56e333
+@assistantId = 8AF9D626-0BFF-40FE-9151-3A7AFF679B57
 @doctorEmail = doctor@medapp.pl
-@patientId = 00000000-0000-0000-0001-000000000001
+@patientId = 00000000-0000-0000-0000-000000000002
 @consultationRoomId = 00000000-0000-0000-0000-000000000001
 @accessToken = {{sign_in.response.body.$.accessToken}}
 
@@ -11,14 +12,15 @@ GET {{url}}
 
 ###
 POST {{url}}/users
+Authorization : Bearer {{accessToken}}
 Content-Type: application/json
 
 {
-    "email": "assistant@medapp.pl",
+    "email": "doctor@medapp.pl",
     "password": "secret",
     "firstName": "Joe",
     "lastName": "Doe",
-    "role": "assistant"
+    "role": "doctor"
 }
 
 
@@ -68,6 +70,10 @@ Authorization : Bearer {{accessToken}}
 GET {{url}}/users/{{doctorId}}
 Authorization : Bearer {{accessToken}}
 
+###
+GET {{url}}/users/{{assistantId}}
+Authorization : Bearer {{accessToken}}
+
 
 ###
 GET {{url}}/patients
@@ -80,16 +86,19 @@ GET {{url}}/visits
 GET {{url}}/visits/{{visitId}}
 
 ###
+GET {{url}}/visits/patient/{{patientId}}
+
+###
 POST {{url}}/visits
 Authorization : Bearer {{accessToken}}
 Content-Type: application/json
 
 {
-    "doctorId": "{{doctorId}}",
+    "doctorId": "{{assistantId}}",
     "patientId": "{{patientId}}",
     "consultationRoomId": "{{consultationRoomId}}",
-    "dateFrom": "2022-10-24T15:30:00",
-    "dateTo": "2022-10-24T16:30:00",
+    "dateFrom": "2022-10-28T20:30:00",
+    "dateTo": "2022-10-28T21:30:00",
     "procedureName": "Procedure",
     "description": "Little description"
 }

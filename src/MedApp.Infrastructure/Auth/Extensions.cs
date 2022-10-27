@@ -47,14 +47,12 @@ namespace MedApp.Infrastructure.Auth
                 {
                     policy.RequireRole("admin");
                 });
-                //options.AddPolicy("is-doctor", policy =>
-                //{
-                //    policy.RequireRole("doctor");
-                //});
-                //options.AddPolicy("is-assistant", policy =>
-                //{
-                //    policy.RequireRole("assistant");
-                //});
+
+                options.AddPolicy("moderator-patients", policy =>
+                {
+                    policy.RequireRole(new[] { "admin", "doctor" });
+                });
+                
             });
 
             return services;

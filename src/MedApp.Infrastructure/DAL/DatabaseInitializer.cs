@@ -43,24 +43,27 @@ namespace MedApp.Infrastructure.DAL
         {
 
             dbContext.ConsultationRooms.RemoveRange(dbContext.ConsultationRooms);
-            
-            var consultationRooms = new List<ConsultationRoom>()
-            {
-                ConsultationRoom.Create(Guid.Parse("00000000-0000-0000-0000-000000000001"), "CR1"),
-                ConsultationRoom.Create(Guid.Parse("00000000-0000-0000-0000-000000000002"), "CR2"),
-                ConsultationRoom.Create(Guid.Parse("00000000-0000-0000-0000-000000000003"), "CR3"),
-            };
+
+            var consultationRooms = new List<ConsultationRoom>();
+            for (int i = 1; i <= 5; i++)
+            {   
+                var id = Guid.Parse($"00000000-0000-0000-0000-00000000000{i}");
+                var consultationRoom = ConsultationRoom.Create(id, $"CR{i}");
+                consultationRooms.Add(consultationRoom);
+            }
+
             return consultationRooms;
         }
 
         private async Task<List<Patient>> ReturnPatients(MedAppDbContext dbContext)
         {
             dbContext.Patients.RemoveRange(dbContext.Patients);
-            var patients = new List<Patient>()
+            var patients = new List<Patient>();
+            for (int i = 1; i <= 5; i++)
             {
-                Patient.Create(Guid.Parse("00000000-0000-0000-0001-000000000001"), "Patient1F", "Patient1L", "patient1@email.com", "111111111111", _clock.Current().AddDays(-3), _clock.Current().AddDays(-1)),
-                Patient.Create(Guid.Parse("00000000-0000-0000-0002-000000000002"), "Patient2F", "Patient2L", "patient2@email.com", "222222222222", _clock.Current().AddDays(-2), _clock.Current().AddDays(-2)),
-                Patient.Create(Guid.Parse("00000000-0000-0000-0003-000000000003"), "Patient3F", "Patient3L", "patient3@email.com", "333333333333", _clock.Current().AddDays(-1), _clock.Current().AddDays(-3)),
+                var id = Guid.Parse($"00000000-0000-0000-0000-00000000000{i}");
+                var patient = Patient.Create(id, Faker.Name.First(), Faker.Name.Last(), Faker.Internet.Email(), Faker.Phone.Number(), _clock.Current().AddDays(-3), _clock.Current().AddDays(-1));
+                patients.Add(patient);
             };
             return patients;
         }

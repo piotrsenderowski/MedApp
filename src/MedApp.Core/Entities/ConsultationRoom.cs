@@ -12,7 +12,6 @@ namespace MedApp.Core.Entities
     {
         public ConsultationRoomId Id { get; private set; }
         public ConsultationRoomName Name { get; private set; }
-
         private ConsultationRoom(ConsultationRoomId id, ConsultationRoomName name) 
         {
             Id = id;

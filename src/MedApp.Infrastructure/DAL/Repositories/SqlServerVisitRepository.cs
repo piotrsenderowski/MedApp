@@ -13,9 +13,11 @@ namespace MedApp.Infrastructure.DAL.Repositories
     internal sealed class SqlServerVisitRepository : IVisitRepository
     {
         private readonly DbSet<Visit> _visits;
+        private readonly MedAppDbContext _dbContext;
 
         public SqlServerVisitRepository(MedAppDbContext dbContext)
         {
+            _dbContext = dbContext;
             _visits = dbContext.Visits;
         }
 
@@ -26,7 +28,7 @@ namespace MedApp.Infrastructure.DAL.Repositories
         public async Task<IEnumerable<Visit>> GetVisitsByPatientId(PatientId id)
         {
             var result = await _visits
-                .Include(x => x.PatientId)
+                .Include(x => x.Patient).Where(x => x.PatientId == id)
                 .ToListAsync();
             return result.AsEnumerable();
         }

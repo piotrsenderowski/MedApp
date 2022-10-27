@@ -18,17 +18,21 @@ namespace MedApp.Api.Controllers
         private readonly ICommandHandler<CreateVisit> _createVisitHandler;
         private readonly ICommandHandler<DeleteVisit> _deleteVisitHandler;
         private readonly IQueryHandler<GetVisits, IEnumerable<VisitDto>> _getVisitsHandler;
+        private readonly IQueryHandler<GetPatientsVisits, IEnumerable<VisitDto>> _getPatientsVisitsHandler;
         private readonly IQueryHandler<GetVisit, VisitDto> _getVisitHandler;
 
         public VisitsController(
-            ICommandHandler<CreateVisit> createVisitHandler, 
-            ICommandHandler<DeleteVisit> deleteVisitHandler, 
+            ICommandHandler<CreateVisit> createVisitHandler,
+            ICommandHandler<DeleteVisit> deleteVisitHandler,
             IQueryHandler<GetVisits, IEnumerable<VisitDto>> getVisitsHandler,
-            IQueryHandler<GetVisit, VisitDto> getVisitHandler)
+            IQueryHandler<GetPatientsVisits, IEnumerable<VisitDto>> getPatientsVisitsHandler,
+            IQueryHandler<GetVisit, VisitDto> getVisitHandler
+            )
         {
             _createVisitHandler = createVisitHandler;
             _deleteVisitHandler = deleteVisitHandler;
             _getVisitsHandler = getVisitsHandler;
+            _getPatientsVisitsHandler = getPatientsVisitsHandler;
             _getVisitHandler = getVisitHandler;
         }
 
@@ -49,6 +53,18 @@ namespace MedApp.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<VisitDto>>> Get([FromQuery] GetVisits query)
             => Ok(await _getVisitsHandler.HandleAsync(query));
+
+
+        [HttpGet("patient/{patientId:guid}")]
+        [SwaggerOperation("Get patients visits.")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<VisitDto>>> GetPatientsVisits(Guid patientId)
+        {
+            var query = new GetPatientsVisits { PatientId = patientId };
+            var visits = await _getPatientsVisitsHandler.HandleAsync(query);
+            return visits is null ? NotFound() : Ok(visits);
+        }
+            
 
 
         [HttpPost()]

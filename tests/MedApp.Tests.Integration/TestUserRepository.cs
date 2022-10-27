@@ -18,6 +18,11 @@ namespace MedApp.Tests.Integration
             return Task.CompletedTask;
         }
 
+        public Task DeleteAsync(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<User> GetByEmailAsync(Email email)
             => Task.FromResult(_users.SingleOrDefault(x => x.Email == email));
 
