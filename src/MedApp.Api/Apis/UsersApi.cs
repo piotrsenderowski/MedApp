@@ -55,7 +55,8 @@ namespace MedApp.Api.Apis
 
                 return Results.CreatedAtRoute(MeRoute, new { command.UserId }, null);
 
-            }).RequireAuthorization("is-admin");
+            });
+                //.RequireAuthorization("is-admin");
 
 
             app.MapPost("users/sign-in", async (SignIn command, ICommandHandler<SignIn> handler, ITokenStorage tokenStorage) =>

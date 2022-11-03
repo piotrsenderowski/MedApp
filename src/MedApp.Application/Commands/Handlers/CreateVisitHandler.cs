@@ -44,7 +44,8 @@ namespace MedApp.Application.Commands.Handlers
                 throw new PatientNotFoundException(patientId);
             }
 
-            var visit = new Visit(visitId, doctorId, patientId, consultationRoomId, dateFrom, dateTo, procedureName, description);
+            var status = Status.Reserved; //do klasy
+            var visit = new Visit(visitId, doctorId, patientId, consultationRoomId, procedureName, description, status, dateFrom, dateTo, null, null);
             await _visitRepository.AddAsync(visit);
         }
     }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MedApp.Infrastructure.Migrations
 {
-    public partial class Initial_20221020_1326 : Migration
+    public partial class Migration_20221103_1341 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,21 +57,6 @@ namespace MedApp.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "VisitDetail",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DateFrom = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateTo = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProcedureName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_VisitDetail", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Visits",
                 columns: table => new
                 {
@@ -79,7 +64,13 @@ namespace MedApp.Infrastructure.Migrations
                     DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ConsultationRoomId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    VisitDetailId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    DateFrom_planned = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateTo_planned = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateFrom_executed = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateTo_executed = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ProcedureName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -98,11 +89,6 @@ namespace MedApp.Infrastructure.Migrations
                         name: "FK_Visits_Users_DoctorId",
                         column: x => x.DoctorId,
                         principalTable: "Users",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Visits_VisitDetail_VisitDetailId",
-                        column: x => x.VisitDetailId,
-                        principalTable: "VisitDetail",
                         principalColumn: "Id");
                 });
 
@@ -126,11 +112,6 @@ namespace MedApp.Infrastructure.Migrations
                 name: "IX_Visits_PatientId",
                 table: "Visits",
                 column: "PatientId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Visits_VisitDetailId",
-                table: "Visits",
-                column: "VisitDetailId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -146,9 +127,6 @@ namespace MedApp.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "VisitDetail");
         }
     }
 }

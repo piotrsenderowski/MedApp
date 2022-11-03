@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedApp.Infrastructure.Migrations
 {
     [DbContext(typeof(MedAppDbContext))]
-    [Migration("20221025184146_Migration_2022-10-25_2040")]
-    partial class Migration_20221025_2040
+    [Migration("20221103124148_Migration_2022-11-03_1341")]
+    partial class Migration_20221103_1341
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -124,10 +124,16 @@ namespace MedApp.Infrastructure.Migrations
                     b.Property<Guid?>("ConsultationRoomId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DateFrom")
+                    b.Property<DateTime?>("DateFrom_executed")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateTo")
+                    b.Property<DateTime>("DateFrom_planned")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateTo_executed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateTo_planned")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -142,16 +148,17 @@ namespace MedApp.Infrastructure.Migrations
                     b.Property<string>("ProcedureName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Status")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ConsultationRoomId");
 
-                    b.HasIndex("PatientId");
+                    b.HasIndex("DoctorId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("PatientId");
 
                     b.ToTable("Visits");
                 });
@@ -162,13 +169,13 @@ namespace MedApp.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("ConsultationRoomId");
 
+                    b.HasOne("MedApp.Core.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("DoctorId");
+
                     b.HasOne("MedApp.Core.Entities.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("PatientId");
-
-                    b.HasOne("MedApp.Core.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
 
                     b.Navigation("ConsultationRoom");
 

@@ -17,8 +17,8 @@ namespace MedApp.Infrastructure.DAL.Handlers
                 DoctorId = entity.DoctorId,
                 PatientId = entity.PatientId,
                 ConsultationRoomId = entity.ConsultationRoomId,
-                DateFrom = entity.DateFrom,
-                DateTo = entity.DateTo,
+                DateFrom = entity.DateFrom_planned,
+                DateTo = entity.DateTo_planned,
                 ProcedureName = entity.ProcedureName,
                 Description = entity.Description
             };

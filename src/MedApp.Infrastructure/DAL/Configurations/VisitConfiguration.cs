@@ -26,16 +26,23 @@ namespace MedApp.Infrastructure.DAL.Configurations
                 .HasConversion(x => x.Value, x => new PatientId(x));
             builder.Property(x => x.ConsultationRoomId)
                 .HasConversion(x => x.Value, x => new ConsultationRoomId(x));
-            builder.Property(x => x.DateFrom)
+            builder.Property(x => x.DateFrom_planned)
                 .IsRequired()
                 .HasConversion(x => x.Value, x => new Date(x));
-            builder.Property(x => x.DateTo)
+            builder.Property(x => x.DateTo_planned)
                 .IsRequired()
+                .HasConversion(x => x.Value, x => new Date(x));
+            builder.Property(x => x.DateFrom_executed)
+                .HasConversion(x => x.Value, x => new Date(x));
+            builder.Property(x => x.DateTo_executed)
                 .HasConversion(x => x.Value, x => new Date(x));
             builder.Property(x => x.ProcedureName)
                 .HasConversion(x => x.Value, x => new ProcedureName(x));
             builder.Property(x => x.Description)
                 .HasConversion(x => x.Value, x => new Description(x));
+            builder.Property(x => x.Status)
+                .HasConversion(x => x.Value, x => new Status(x))
+                .HasMaxLength(30);
         }
     }
 }

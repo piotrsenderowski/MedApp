@@ -36,7 +36,7 @@ namespace MedApp.Infrastructure.DAL.Repositories
         public async Task AddAsync(Visit visit)
         {
             var allConsultationRoomVisits = await _visits.Where(x => x.ConsultationRoomId == visit.ConsultationRoomId).ToListAsync();
-            var allTodaysConsultationRoomVisit = allConsultationRoomVisits.Where(x => x.DateFrom.Value.Date == visit.DateFrom.Value.Date && x.DateTo.Value.Date == visit.DateTo.Value.Date).ToList();
+            var allTodaysConsultationRoomVisit = allConsultationRoomVisits.Where(x => x.DateFrom_planned.Value.Date == visit.DateFrom_planned.Value.Date && x.DateTo_planned.Value.Date == visit.DateTo_planned.Value.Date).ToList();
             if (allTodaysConsultationRoomVisit.Any())
             {
                 var isVisitDateIsValid = IsVisitDateValid(visit, allTodaysConsultationRoomVisit);
@@ -61,8 +61,8 @@ namespace MedApp.Infrastructure.DAL.Repositories
         { 
             foreach (Visit visit in existingVisits)
             {
-                var isDateFromBetween = IsDateTimeBetween(newVisit.DateFrom, visit.DateFrom, visit.DateTo);
-                var isDateToBetween = IsDateTimeBetween(newVisit.DateTo, visit.DateFrom, visit.DateTo);
+                var isDateFromBetween = IsDateTimeBetween(newVisit.DateFrom_planned, visit.DateFrom_planned, visit.DateTo_planned);
+                var isDateToBetween = IsDateTimeBetween(newVisit.DateTo_planned, visit.DateFrom_planned, visit.DateTo_planned);
                 if (isDateFromBetween || isDateToBetween)
                 {
                     return false;

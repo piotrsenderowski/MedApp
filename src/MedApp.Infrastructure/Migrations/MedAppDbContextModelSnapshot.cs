@@ -122,10 +122,16 @@ namespace MedApp.Infrastructure.Migrations
                     b.Property<Guid?>("ConsultationRoomId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DateFrom")
+                    b.Property<DateTime?>("DateFrom_executed")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateTo")
+                    b.Property<DateTime>("DateFrom_planned")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateTo_executed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateTo_planned")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -139,6 +145,10 @@ namespace MedApp.Infrastructure.Migrations
 
                     b.Property<string>("ProcedureName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
 
